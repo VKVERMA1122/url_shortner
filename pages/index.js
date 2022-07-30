@@ -1,25 +1,25 @@
 import { useState } from "react";
-import {
-  Button,
-  Input,
-} from "@chakra-ui/react";
+import { Button, Input } from "@chakra-ui/react";
 
 export default function Home() {
   const [fullurl, setfullurl] = useState("");
   const [shorturl, setshorturl] = useState("");
 
   const createUrl = async () => {
-    const response = await fetch("http://localhost:3000/api/create", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        url: fullurl,
-        slug: shorturl,
-      }),
-    });
+    const response = await fetch(
+      "https://url-shortner-v2.vercel.app/api/create",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          url: fullurl,
+          slug: shorturl,
+        }),
+      }
+    );
     if (response.ok) {
       console.log("msg", response.data);
     } else {
